@@ -1,0 +1,55 @@
+---
+// src/pages/index.astro
+const siteTitle = "Prime MTB Tours";
+const tagline = "Coastal Enduro Adventures on the Italian Riviera";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{siteTitle} – {tagline}</title>
+    <meta
+      name="description"
+      content="Guided MTB and e-MTB tours between Cinque Terre and Portofino. Scenic, technical, and custom rides for every level."
+    />
+  </head>
+  <body
+    style="
+      margin:0;
+      min-height:100vh;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+      color:#f9fafb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    "
+  >
+    <main style="max-width: 960px; padding: 2rem; text-align:center;">
+      <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 0.5rem;">
+        {siteTitle}
+      </h1>
+      <p style="font-size: 1.25rem; opacity: 0.9; margin-bottom: 1.5rem;">
+        {tagline}
+      </p>
+      <p style="max-width: 640px; margin: 0 auto 2rem auto; line-height: 1.6;">
+        Guided MTB and e-MTB tours along the Ligurian coast, between Cinque Terre and Portofino.
+        From scenic beginner rides to technical enduro adventures — ride the edge with local guidance.
+      </p>
+      <a
+        href="mailto:info@primemtbtours.com"
+        style="
+          display:inline-block;
+          padding: 0.85rem 1.75rem;
+          border-radius: 999px;
+          background: linear-gradient(90deg,#facc15,#f97316);
+          color:#111827;
+          font-weight:600;
+          text-decoration:none;
+        "
+      >
+        Book a tour
+      </a>
+    </main>
+  </body>
+</html>
