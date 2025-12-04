@@ -1,0 +1,26 @@
+---
+import { SITE_TITLE, SITE_TAGLINE } from "../config";
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-inner">
+      <div class="footer-logo-section">
+        <img
+          src="/logo-primemtbtours.png"
+          alt={SITE_TITLE}
+          class="footer-logo"
+        />
+        <div class="footer-brand">
+          <div class="footer-brand-name">{SITE_TITLE}</div>
+          <div class="footer-tagline">{SITE_TAGLINE}</div>
+        </div>
+      </div>
+      <div class="footer-info">
+        <span>© {year} {SITE_TITLE}</span>
+        <span>Liguria, Italy</span>
+      </div>
+    </div>
+  </div>
+</footer>

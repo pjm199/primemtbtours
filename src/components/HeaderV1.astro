@@ -1,0 +1,28 @@
+---
+import { SITE_TITLE, SITE_TAGLINE } from "../config";
+---
+
+<header class="site-header">
+  <div class="shell">
+    <div class="header-inner">
+      <a href="/" class="logo-block">
+        <img
+          src="/logo-prime.png"
+          alt={`${SITE_TITLE} – ${SITE_TAGLINE}`}
+          class="logo-img"
+        />
+        <div class="logo-text">
+          <div class="brand">{SITE_TITLE}</div>
+          <div class="subbrand">{SITE_TAGLINE}</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#tours">Tours</a>
+        <a href="#area">Where we ride</a>
+        <a href="#levels">Levels &amp; bikes</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,29 @@
+---
+import { CONTACT_EMAIL } from "../config";
+---
+
+<section id="contact" class="section section-alt">
+  <div class="shell">
+    <h2 class="section-title">Contact &amp; bookings</h2>
+    <p class="section-intro">
+      Ready to ride, or just want to understand what’s possible for your dates
+      and level? Send a short message with:
+    </p>
+    <ul class="bullet-list">
+      <li>Dates you are in the area</li>
+      <li>Number of riders &amp; approximate level</li>
+      <li>MTB or e-MTB, and if you need rental</li>
+    </ul>
+
+    <div class="contact-box">
+      <p>Email:</p>
+      <p class="contact-main">
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+      <p class="contact-note">
+        You can write in English or Italian. We’ll reply with options,
+        difficulty, and a clear price for your group.
+      </p>
+    </div>
+  </div>
+</section>

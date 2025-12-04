@@ -1,0 +1,30 @@
+---
+import "../styles/global.css";
+import "../styles/tailwind.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_TAGLINE } from "../config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = `${SITE_TITLE} – ${SITE_TAGLINE}`, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
