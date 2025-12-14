@@ -1,0 +1,25 @@
+[
+  {
+    "id": "continue",
+    "title": "Continue watching",
+    "items": [
+      {
+        "id": 1,
+        "title": "The Rider of Cinque Terre",
+        "subtitle": "Season 1",
+        "description": "Follow epic e-bike adventures along the Ligurian coast, trails, and villages.",
+        "badging": "Included with Prime",
+        "imageUrl": "https://images.pexels.com/photos/248787/pexels-photo-248787.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "tags": ["Adventure", "MTB", "Travel"]
+      }
+
+    ]
+  },
+  {
+    "id": "recommended",
+    "title": "Recommended for you",
+    "items": [
+
+    ]
+  }
+]

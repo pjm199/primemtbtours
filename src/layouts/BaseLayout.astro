@@ -26,5 +26,10 @@ const { title = `${SITE_TITLE} – ${SITE_TAGLINE}`, description } = Astro.props
       <slot />
     </main>
     <Footer />
+
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
   </body>
 </html>
