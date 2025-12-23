@@ -1,0 +1,127 @@
+{
+  "featured": [
+    {
+      "id": 1,
+      "title": "Ride Cinque Terre",
+      "subtitle": "Season 1 • 2025",
+      "description": "Follow epic e-bike adventures along the Ligurian coast, stunning trails, and picturesque villages. ",
+      "imageUrl": "/media/mtbtours-landscape-scenic.png",
+      "videoUrl": "dQw4w9WgXcQ",
+      "badge": "New Season",
+      "tags": ["Adventure", "MTB", "Alta Via"],
+      "rating": "4.8"
+    },
+    {
+      "id": 2,
+      "title": "Sestri Levante Trails",
+      "subtitle": "Documentary • 2025",
+      "description": "Discover hidden singletracks and technical descents around Sestri Levante. Local riders share their favorite routes through the Ligurian hills.",
+      "imageUrl": "/media/sestri1.jpeg",
+      "videoUrl": "tJRzBpFjJS8",
+      "badge": "Featured",
+      "tags": ["Documentary", "MTB", "Nature"],
+      "rating": "4.9"
+    },
+    {
+      "id": 3,
+      "title": "Enduro Masters",
+      "subtitle": "Series • 2025",
+      "description": "Top riders tackle the most challenging enduro trails in Liguria. Rocky descents, tight switchbacks, and stunning coastal views.",
+      "imageUrl": "/media/mtb-forest-1.jpeg",
+      "videoUrl": "Cje72EJnCPI",
+      "badge": "Trending",
+      "tags": ["Competition", "Sports", "Enduro"],
+      "rating": "4.7"
+    },
+    {
+      "id": 4,
+      "title": "Coastal Sunset Rides",
+      "subtitle": "Movie • 2025",
+      "description": "Golden hour rides above the Mediterranean. Experience the magic of riding coastal trails as the sun sets over the Ligurian Sea.",
+      "imageUrl": "/media/mtb-coast-1.jpeg",
+      "videoUrl": "fKopy74weus",
+      "badge": "Popular",
+      "tags": ["Scenic", "Travel", "Cinema"],
+      "rating": "4.6"
+    },
+    {
+      "id": 5,
+      "title": "Night Trail Adventures",
+      "subtitle": "Series • 2025",
+      "description": "Experience the thrill of night riding through silent villages and moonlit trails. A unique perspective on Ligurian mountain biking.",
+      "imageUrl": "/media/mtb-forest-1.jpeg",
+      "videoUrl": "6v6J0sHYMNs",
+      "badge": "New",
+      "tags": ["Thriller", "Night Riding", "Adventure"],
+      "rating": "4.5"
+    }
+  ],
+  "sections": [
+    {
+      "id": "continue",
+      "title": "Continue watching",
+      "items": [
+        {
+          "id": 6,
+          "title": "The Rider of Cinque Terre",
+          "subtitle": "Season 1",
+          "description": "Follow epic e-bike adventures along the Ligurian coast, trails, and villages.",
+          "badging": "Included with Prime",
+          "imageUrl": "https://images.pexels.com/photos/248787/pexels-photo-248787.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          "tags": ["Adventure", "MTB", "Travel"]
+        },
+        {
+          "id": 7,
+          "title": "Night Ride",
+          "subtitle": "Movie",
+          "description": "A night-time ride through silent towns and twisty roads along the sea.",
+          "badging": "Prime",
+          "imageUrl": "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          "tags": ["Thriller", "Road", "Drama"]
+        },
+        {
+          "id": 8,
+          "title": "Liguria: Hidden Trails",
+          "subtitle": "Season 2",
+          "description": "Secret singletracks, tough climbs, and crazy descents in the backcountry.",
+          "badging": "Included with Prime",
+          "imageUrl": "https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          "tags": ["Documentary", "MTB", "Nature"]
+        }
+      ]
+    },
+    {
+      "id": "recommended",
+      "title": "Recommended for you",
+      "items": [
+        {
+          "id": 9,
+          "title": "Trail Masters",
+          "subtitle": "Season 1",
+          "description": "Top riders battle the toughest trails for the ultimate crown.",
+          "badging": "Prime",
+          "imageUrl": "https://images.pexels.com/photos/258045/pexels-photo-258045.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          "tags": ["Competition", "Sports"]
+        },
+        {
+          "id": 10,
+          "title": "Sunset Lines",
+          "subtitle": "Movie",
+          "description": "Chasing the perfect golden hour ride on the Mediterranean.",
+          "badging": "Prime",
+          "imageUrl": "https://images.pexels.com/photos/276530/pexels-photo-276530.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          "tags": ["Drama", "Travel"]
+        },
+        {
+          "id": 11,
+          "title": "Coastal Flow",
+          "subtitle": "Season 1",
+          "description": "Smooth lines, big views, and flow trails above the sea.",
+          "badging": "Included with Prime",
+          "imageUrl": "https://images.pexels.com/photos/163407/bicycle-bike-fixie-fixed-gear-163407.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          "tags": ["Lifestyle", "MTB"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,55 +1,240 @@
 ---
-import { CONTACT_EMAIL } from "../config";
+type Media =
+  | { kind: "image"; src: string; alt: string }
+  | { kind: "video"; src: string; poster?: string; alt?: string };
+
+type Slide = {
+  eyebrow?: string;
+  headline: string;
+  subheadline: string;
+  media: Media;
+  // "landscape" => 1.618:1, "portrait" => 1:1.618
+  ratio?: "landscape" | "portrait";
+};
+
+const slides: Slide[] = [
+  {
+    eyebrow: "Prime MTB Tours • Liguria",
+    headline: "Breathtaking MTB Tours in Liguria",
+    subheadline:
+      "From scenic coastal rides for beginners to technical enduro lines — guided, safe, and unforgettable.",
+    media: { kind: "image", src: "/media/hero/slide-1.jpg", alt: "Rider above the Ligurian coast at sunset" },
+    ratio: "landscape",
+  },
+  {
+    eyebrow: "Golden Hour Rides",
+    headline: "Ride Liguria at Golden Hour",
+    subheadline:
+      "Coastal panoramas for beginners. Technical descents for enduro riders.",
+    media: { kind: "video", src: "/media/hero/slide-2.mp4", poster: "/media/hero/slide-2.jpg" },
+    ratio: "landscape",
+  },
+  {
+    eyebrow: "Choose Your Style",
+    headline: "Scenic & Technical MTB Tours in Liguria",
+    subheadline:
+      "Choose your pace — we tailor the route to your level.",
+    media: { kind: "image", src: "/media/hero/slide-3.jpg", alt: "Mountain bike trail with sea view in Liguria" },
+    ratio: "portrait",
+  },
+  // Add 1–2 more slides if you want (up to 5 feels best)
+];
+
+const ratioFor = (r?: "landscape" | "portrait") =>
+  r === "portrait" ? "1000 / 1618" : "1618 / 1000";
 ---
 
-<section class="hero">
-  <div class="shell hero-inner">
-    <div class="hero-text">
-      <h1>
-        Ride the edge of the
-        <span class="hero-highlight">Italian Riviera</span>
-      </h1>
-      <p class="hero-subtitle">
-        Guided MTB and e-MTB tours between Cinque Terre, Sestri Levante and the
-        Ligurian coast. From panoramic coastal roads to technical enduro
-        singletrack – We design the ride around your level and your legs.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-primary" href={`mailto:${CONTACT_EMAIL}`}>
-          Book a tour
-        </a>
-        <a class="btn-ghost" href="#tours">
-          View tour styles
-        </a>
+<section class="relative w-full">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10">
+    <div class="relative overflow-hidden rounded-3xl shadow-2xl bg-black">
+      <!-- Media wrapper enforces golden ratio -->
+      <div
+        class="relative w-full"
+        style={`aspect-ratio: ${ratioFor(slides[0]?.ratio)};`}
+        data-hero-ratio
+      >
+        <!-- Track -->
+        <div class="absolute inset-0">
+          <div class="h-full w-full overflow-hidden">
+            <div class="hero-track flex h-full w-full transition-transform duration-700 ease-out">
+              {slides.map((s, i) => (
+                <div class="hero-slide relative h-full w-full flex-none" style={`aspect-ratio: ${ratioFor(s.ratio)};`}>
+                  <div class="absolute inset-0">
+                    {s.media.kind === "image" ? (
+                      <img
+                        src={s.media.src}
+                        alt={s.media.alt}
+                        class="h-full w-full object-cover"
+                        loading={i === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
+                    ) : (
+                      <video
+                        class="h-full w-full object-cover"
+                        src={s.media.src}
+                        poster={s.media.poster}
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        aria-label={s.media.alt ?? s.headline}
+                      />
+                    )}
+                    <!-- Dark overlay for readability -->
+                    <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/35 to-black/10"></div>
+                    <div class="absolute inset-0 bg-black/10"></div>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="absolute inset-0 flex items-end">
+                    <div class="w-full p-5 sm:p-8 lg:p-10">
+                      {s.eyebrow && (
+                        <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs sm:text-sm text-white/90 backdrop-blur">
+                          <span class="h-1.5 w-1.5 rounded-full bg-white/80"></span>
+                          <span>{s.eyebrow}</span>
+                        </div>
+                      )}
+
+                      <h1 class="max-w-2xl text-balance text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
+                        {s.headline}
+                      </h1>
+
+                      <p class="mt-3 max-w-2xl text-pretty text-sm sm:text-base lg:text-lg text-white/85">
+                        {s.subheadline}
+                      </p>
+
+                      <div class="mt-6 flex flex-wrap gap-3">
+                        <a
+                          href="/tours/scenic"
+                          class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm sm:text-base font-semibold bg-white text-black hover:bg-white/90 transition"
+                        >
+                          Scenic Tours (Beginners)
+                        </a>
+                        <a
+                          href="/tours/enduro"
+                          class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm sm:text-base font-semibold bg-white/10 text-white border border-white/25 hover:bg-white/15 transition backdrop-blur"
+                        >
+                          Enduro Tours (Advanced)
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <button
+            type="button"
+            class="hero-prev absolute left-3 top-1/2 -translate-y-1/2 rounded-2xl bg-black/35 border border-white/15 p-3 text-white hover:bg-black/50 transition backdrop-blur"
+            aria-label="Previous slide"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            class="hero-next absolute right-3 top-1/2 -translate-y-1/2 rounded-2xl bg-black/35 border border-white/15 p-3 text-white hover:bg-black/50 transition backdrop-blur"
+            aria-label="Next slide"
+          >
+            ›
+          </button>
+
+          <!-- Dots -->
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-black/35 border border-white/10 px-3 py-2 backdrop-blur">
+            {slides.map((_, i) => (
+              <button
+                type="button"
+                class={`hero-dot h-2.5 w-2.5 rounded-full transition ${i === 0 ? "bg-white" : "bg-white/35 hover:bg-white/60"}`}
+                aria-label={`Go to slide ${i + 1}`}
+                data-index={i}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-      <p class="hero-note">
-        Small groups • Local guide • Custom routes • MTB &amp; e-MTB friendly •
-        Liguria, Italy
-      </p>
     </div>
 
-    <div class="hero-logo-container">
-      <img
-        src="/logo-primemtbtours.png"
-        alt="Prime MTB Tours"
-        class="hero-logo"
-      />
+    <!-- Small trust line (optional) -->
+    <div class="mt-4 text-xs sm:text-sm text-neutral-500">
+      Local guides • Routes tailored to your level • Photo stops • E-bike friendly options
     </div>
   </div>
 </section>
 
-<section class="section welcome-section">
-  <div class="shell">
-    <div class="hero-card standalone">
-      <h2>Your next ride could be:</h2>
-      <ul>
-        <li>Golden-hour coastal ride above Cinque Terre</li>
-        <li>Enduro loops on rocky Ligurian singletrack</li>
-        <li>Flowy mixed-terrain tour with sea views and villages</li>
-      </ul>
-      <p class="hero-card-footer">
-        Tell us your level &amp; bike. We build the perfect route.
-      </p>
-    </div>
-  </div>
-</section>
+<script is:inline>
+  (() => {
+    const root = document.currentScript?.closest("section");
+    if (!root) return;
+
+    const track = root.querySelector(".hero-track");
+    const slides = Array.from(root.querySelectorAll(".hero-slide"));
+    const dots = Array.from(root.querySelectorAll(".hero-dot"));
+    const prev = root.querySelector(".hero-prev");
+    const next = root.querySelector(".hero-next");
+    const ratioBox = root.querySelector("[data-hero-ratio]");
+
+    if (!track || slides.length === 0) return;
+
+    let index = 0;
+    let timer = null;
+    const intervalMs = 6000;
+
+    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const setActive = (i) => {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+
+      dots.forEach((d, di) => {
+        d.classList.toggle("bg-white", di === index);
+        d.classList.toggle("bg-white/35", di !== index);
+      });
+
+      // Match outer aspect ratio to current slide ratio (golden ratio enforced per slide)
+      const slide = slides[index];
+      const style = slide.getAttribute("style") || "";
+      const match = style.match(/aspect-ratio:\s*([^;]+);?/i);
+      if (ratioBox && match && match[1]) ratioBox.style.aspectRatio = match[1].trim();
+    };
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = null;
+    };
+
+    const start = () => {
+      if (prefersReduced) return;
+      stop();
+      timer = window.setInterval(() => setActive(index + 1), intervalMs);
+    };
+
+    prev?.addEventListener("click", () => { setActive(index - 1); start(); });
+    next?.addEventListener("click", () => { setActive(index + 1); start(); });
+
+    dots.forEach((d) => {
+      d.addEventListener("click", () => {
+        const i = Number(d.getAttribute("data-index") || "0");
+        setActive(i);
+        start();
+      });
+    });
+
+    // Pause on hover/focus (better UX)
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+
+    // Keyboard
+    root.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { setActive(index - 1); start(); }
+      if (e.key === "ArrowRight") { setActive(index + 1); start(); }
+    });
+
+    // Init
+    setActive(0);
+    start();
+  })();
+</script>

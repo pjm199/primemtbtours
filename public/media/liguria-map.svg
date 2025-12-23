@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Background Image -->
+  <image href="/media/liguria-blank.jpg" width="1000" height="400" preserveAspectRatio="xMidYMid slice"/>
+
+  <!-- Region 1: Varazze (West - moved much more right) -->
+  <g class="region-hover" data-region="varazze">
+    <path
+      d="M 150,280 Q 190,250 230,245 L 225,300 Q 185,305 155,325 Z"
+      fill="rgba(251, 191, 36, 0.15)"
+      stroke="#fbbf24"
+      stroke-width="2"
+      class="region-box"
+    />
+    <text x="195" y="280" text-anchor="middle" class="region-label" fill="#00d4ff" font-size="16" font-weight="bold">Varazze</text>
+  </g>
+
+  <!-- Region 2: Turchino (moved right where Genova was, higher) -->
+  <g class="region-hover" data-region="turchino">
+    <path
+      d="M 300,210 Q 355,180 410,175 L 400,235 Q 345,240 310,265 Z"
+      fill="rgba(251, 191, 36, 0.15)"
+      stroke="#fbbf24"
+      stroke-width="2"
+      class="region-box"
+    />
+    <text x="360" y="215" text-anchor="middle" class="region-label" fill="#10b981" font-size="16" font-weight="bold">Turchino</text>
+  </g>
+
+  <!-- Region 3: Genova (moved higher and more right) -->
+  <g class="region-hover" data-region="genova-righi">
+    <path
+      d="M 480,165 Q 535,150 590,155 L 580,215 Q 525,215 490,235 Z"
+      fill="rgba(251, 191, 36, 0.15)"
+      stroke="#fbbf24"
+      stroke-width="2"
+      class="region-box"
+    />
+    <text x="540" y="195" text-anchor="middle" class="region-label" fill="#f59e0b" font-size="16" font-weight="bold">Genova</text>
+  </g>
+
+  <!-- Region 4: Sestri Levante (NOT MOVED) -->
+  <g class="region-hover" data-region="sestri-levante">
+    <path
+      d="M 615,165 Q 675,160 735,175 L 720,235 Q 660,225 625,230 Z"
+      fill="rgba(251, 191, 36, 0.15)"
+      stroke="#fbbf24"
+      stroke-width="2"
+      class="region-box"
+    />
+    <text x="675" y="200" text-anchor="middle" class="region-label" fill="#8b5cf6" font-size="16" font-weight="bold">Sestri Levante</text>
+  </g>
+
+  <!-- Region 5: Cinque Terre (NOT MOVED) -->
+  <g class="region-hover" data-region="cinque-terre">
+    <path
+      d="M 800,195 Q 855,210 910,235 L 890,290 Q 835,270 810,255 Z"
+      fill="rgba(251, 191, 36, 0.15)"
+      stroke="#fbbf24"
+      stroke-width="2"
+      class="region-box"
+    />
+    <text x="855" y="250" text-anchor="middle" class="region-label" fill="#ec4899" font-size="16" font-weight="bold">Cinque Terre</text>
+  </g>
+</svg>

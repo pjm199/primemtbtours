@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import MediaStrip from "../components/MediaStrip.astro";
 import TourStyles from "../components/TourStyles.astro";
@@ -7,21 +7,39 @@ import AreaSection from "../components/AreaSection.astro";
 import LevelsSection from "../components/LevelsSection.astro";
 import ContactSection from "../components/ContactSection.astro";
 import PrimeHome from "../components/PrimeHome";
+import HeroCarousel from "../components/HeroCarousel";
+import ToursSection from "../components/ToursSection";
+import LiguriaMap from "../components/LiguriaMap.astro";
+import TrailforksMap from "../components/TrailforksMap.astro";
 import { SITE_TITLE, SITE_TAGLINE } from "../config";
+
+// Load data
+import heroCarouselData from "../data/heroCarousel.json";
+import toursData from "../data/tours.json";
+import type { TourCategory } from "../components/ToursSection";
 
 const description =
   "Guided MTB and e-MTB tours between Cinque Terre, Portofino and the Ligurian coast. Scenic rides, technical enduro trails and custom adventures for every level.";
 ---
 
-<BaseLayout title={`${SITE_TITLE} – ${SITE_TAGLINE}`} description={description}>
-  
-  <PrimeHome client:load/>
+<Layout title={`${SITE_TITLE} – ${SITE_TAGLINE}`} description={description}>
+
+  <HeroCarousel client:load videos={heroCarouselData.featured} />
+
+  <!-- <Hero /> -->
+
+  <ToursSection client:load categories={toursData.categories as TourCategory[]} />
+
+  <LiguriaMap />
+
+  <TrailforksMap />
+
+  <!-- <PrimeHome client:load sections={videosData.sections} /> -->
 
 
-  <!-- <Hero />
-  <MediaStrip />
+  <!-- <MediaStrip />
   <TourStyles />
   <AreaSection />
   <LevelsSection />
   <ContactSection /> -->
-</BaseLayout>
+</Layout>

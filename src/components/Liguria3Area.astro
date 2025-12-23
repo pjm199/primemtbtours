@@ -1,0 +1,235 @@
+---
+/**
+ * Liguria3Area.astro
+ * 3 clickable labels on top of a background image.
+ *
+ * Usage:
+ * <Liguria3Area />
+ * or:
+ * <Liguria3Area
+ *   imageSrc="/images/liguria-3-aree.jpg"
+ *   links={{
+ *     genoa: "/genoa",
+ *     sestriLevante: "/sestri-levante",
+ *     cinqueTerre: "/cinque-terre"
+ *   }}
+ * />
+ */
+
+type Links = {
+  genoa: string;
+  sestriLevante: string;
+  cinqueTerre: string;
+};
+
+const {
+  imageSrc = "/media/liguria-3-aree.JPG",
+  alt = "Liguria map with 3 areas: Genoa, Sestri Levante, Cinque Terre",
+  links = {
+    genoa: "/areas/genoa",
+    sestriLevante: "/areas/sestri-levante",
+    cinqueTerre: "/areas/cinque-terre",
+  } satisfies Links,
+} = Astro.props as {
+  imageSrc?: string;
+  alt?: string;
+  links?: Links;
+};
+---
+<div>
+    <div
+        class="relative z-10 flex h-12 w-full items-center justify-between rounded-none bg-cover bg-center bg-no-repeat px-5 lg:justify-center lg:px-8"
+        data-testid="holiday-promotion-banner"
+        style="background-image: url(&quot;https://artlist-dev.imgix.net/artlist/holiday-toast-desktop.png?auto=format&quot;);"
+    >
+        <div
+            class="relative z-10 hidden text-base font-medium capitalize tracking-[0.2px] text-white lg:absolute lg:left-8 lg:inset-y-0 lg:flex lg:items-center"
+        >
+            HOLIDAY TOUR SALE
+        </div>
+        <div
+            class="relative z-10 flex items-center justify-center h-full pointer-events-none lg:pointer-events-auto"
+        >
+            <img
+                alt="Banana"
+                class="w-4.5 h-5 mr-2"
+                src="https://artlist-dev.imgix.net/artlist/banana-icon.png?auto=format"
+            />
+            <span
+                class="text-base font-medium leading-[1.015] tracking-[-0.5px] text-white lg:text-xl"
+            >
+                Winter Tours are here! Save up to 40%
+            </span>
+            <div class="hidden lg:block ml-4">
+                <div class="relative group text-sm leading-none">
+                    <button
+                        data-testid="holiday-promotion-banner-cta"
+                        aria-label="Book Now"
+                        type="button"
+                        class="relative z-1 rounded-full flex justify-center items-center overflow-hidden ease-[cubic-bezier(0.175,0.885,0.32,2.2)] disabled:cursor-not-allowed disabled:text-invert disabled:bg-gray-300 disabled:border-gray-300 text-primary-contrast border border-transparent transition-all duration-300 py-1 px-7 text-xs font-medium leading-normal tracking-[0.24px] !bg-[#FFDA2A] !border-[#ffda2a] !border-[0.314px] [&>div>button>div:nth-child(3)]:!shadow-[0px_0.628px_7.658px_-3.139px_inset_rgba(255,237,154,0.5),-4.222px_-4.222px_2.111px_-4.222px_inset_rgba(255,218,42,0.4),4.187px_4.187px_2.111px_-3.901px_inset_rgba(255,255,255,0.3)] [&>div>button>div:nth-child(3)]:!inset-[-0.16px]"
+                    >
+                        <div
+                            class="z-0 absolute inset-0 overflow-hidden isolate backdrop-blur-sm rounded-full"
+                        >
+                        </div>
+                        <div
+                            class="absolute z-1 inset-0 bg-[#0000000d] border-[0.5px] border-[#ffffff99]"
+                        >
+                        </div>
+                        <div
+                            class="absolute z-2 inset-0 rounded-full"
+                            style="box-shadow: rgba(255, 218, 42, 0.1) -1.996px 2.391px 18.109px -2.622px inset, rgba(255, 218, 42, 0.4) -5.73px -4px 3.36px -2.73px inset, rgba(255, 255, 255, 0.3) 6.671px 6.671px 3.363px -6.214px inset, rgba(255, 237, 154, 0.5) 0px 1px 12.2px -5px inset, rgba(255, 218, 42, 0.4) -6.727px -6.727px 3.363px -6.727px inset, rgba(255, 255, 255, 0.3) 6.671px 6.671px 3.363px -6.214px inset;"
+                        >
+                        </div>
+                        <div
+                            class="bg-primary w-full absolute p-0 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 blur-lg lg:group-hover:bg-[radial-gradient(#ffff5e_30%,_#ffda2a,_transparent)] transition-all duration-300 h-[200%] md:top-[100%]"
+                        ></div>
+                        <span class="relative flex min-h-5 items-center justify-center gap-1">
+                            <span class="whitespace-nowrap">Subscribe Now</span>
+                        </span>
+                    </button>
+                    <div
+                        class="bg-primary w-full h-full absolute p-0 top-0 md:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 blur-lg lg:group-hover:bg-[radial-gradient(#ffff5e_30%,_#ffda2a,_transparent)] transition-opacity duration-300 z-0 opacity-0 lg:group-hover:opacity-100 bg-[radial-gradient(#ffff5e_30%,_#ffda2a,_transparent)]"
+                    ></div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="relative z-10 flex items-center justify-center h-full lg:absolute lg:right-8 lg:inset-y-0"
+        >
+            <button
+                type="button"
+                class="flex h-4 w-4 justify-end p-0 !h-5 !w-5"
+                aria-label="Close"
+                data-testid="close-banner-button"
+            >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="xmark"
+                    class="svg-inline--fa fa-xmark transition-smooth text-base leading-4 text-gray-100 hover:text-gray-50 !text-white !text-lg !font-normal"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                >
+                    <path
+                        fill="currentColor"
+                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                    ></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<section class="liguria3area" aria-label="Liguria 3 Areas Map">
+  <img class="map" src={imageSrc} alt={alt} loading="eager" />
+
+  <a class="label genoa" href={links.genoa} aria-label="Open Genoa area">
+    Genoa
+  </a>
+
+  <a
+    class="label sestri"
+    href={links.sestriLevante}
+    aria-label="Open Sestri Levante area"
+  >
+    Sestri Levante
+  </a>
+
+  <a class="label cinque" href={links.cinqueTerre} aria-label="Open Cinque Terre area">
+    Cinque Terre
+  </a>
+</section>
+
+<style>
+  .liguria3area {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+
+    /* Mantiene un rapporto “golden-ish” per non schiacciare l’immagine */
+    aspect-ratio: 1.618 / 1;
+
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+
+    /* opzionale: piccolo bordo */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .label {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 16px;
+    border-radius: 12px;
+
+    /* stile “tag” come nello screenshot */
+    background: rgba(218, 188, 70, 0.45);
+    backdrop-filter: blur(2px);
+
+    color: #0b2a55;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+
+    transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease;
+    transform: translate(-50%, -50%);
+  }
+
+  .label:hover {
+    transform: translate(-50%, -50%) scale(1.03);
+    background: rgba(218, 188, 70, 0.60);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  }
+
+  .label:focus-visible {
+    outline: 3px solid rgba(255, 215, 0, 0.85);
+    outline-offset: 2px;
+  }
+
+  /* Posizioni (percentuali) - matching yellow-green label boxes in image */
+  .label.genoa {
+    left: 17%;
+    top: 68%;
+    font-size: clamp(18px, 2.3vw, 34px);
+  }
+
+  .label.sestri {
+    left: 52%;
+    top: 57%;
+    font-size: clamp(16px, 2.0vw, 28px);
+  }
+
+  .label.cinque {
+    left: 86%;
+    top: 68%;
+    font-size: clamp(16px, 2.0vw, 28px);
+  }
+
+  /* Mobile: un filo più compatto */
+  @media (max-width: 520px) {
+    .label {
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+  }
+</style>

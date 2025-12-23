@@ -1,0 +1,107 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// Get all published tours sorted by date (newest first)
+const allTours = await getCollection('tours', ({ data }: any) => data.published);
+const tours = allTours.sort((a: any, b: any) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const difficultyColors: Record<string, string> = {
+  Beginner: "from-green-500 to-emerald-600",
+  Intermediate: "from-amber-500 to-orange-600",
+  Advanced: "from-red-500 to-rose-600",
+};
+
+const categoryColors: Record<string, string> = {
+  Scenic: "bg-blue-500",
+  Enduro: "bg-red-500",
+  "E-MTB": "bg-green-500",
+  Custom: "bg-purple-500",
+};
+---
+
+<Layout
+  title="All Tours | Prime MTB Tours"
+  description="Browse all our mountain biking tours on the Italian Riviera. From scenic coastal rides to technical enduro trails."
+  canonical="/tours"
+>
+  <div class="min-h-screen bg-[#0f172a] text-white pt-28 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+      <!-- Header -->
+      <div class="mb-12">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">All Tours</h1>
+        <p class="text-xl text-gray-300">
+          Explore our complete collection of mountain biking adventures on the Italian Riviera
+        </p>
+      </div>
+
+      <!-- Tours Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {tours.map((tour: any) => (
+          <a
+            href={`/tours/${tour.slug}`}
+            class="group block bg-[#1e293b] rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"
+          >
+            <!-- Image -->
+            <div class="relative aspect-[1.618/1] overflow-hidden">
+              <img
+                src={tour.data.image}
+                alt={tour.data.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div class="absolute inset-0 bg-linear-to from-blue-950/80 via-slate-900/40 to-transparent"></div>
+
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex gap-2">
+                <span class={`px-2 py-1 rounded text-xs font-bold text-white ${categoryColors[tour.data.category]}`}>
+                  {tour.data.category}
+                </span>
+                <span class={`px-2 py-1 rounded text-xs font-bold text-white bg-linear-to-r ${difficultyColors[tour.data.difficulty]}`}>
+                  {tour.data.difficulty}
+                </span>
+              </div>
+
+              {tour.data.featured && (
+                <div class="absolute top-3 right-3">
+                  <span class="px-2 py-1 rounded bg-yellow-500 text-black text-xs font-bold">
+                    ⭐ Featured
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <!-- Content -->
+            <div class="p-5">
+              <h2 class="text-xl font-bold mb-2 group-hover:text-[#00a8e1] transition-colors">
+                {tour.data.title}
+              </h2>
+              <p class="text-sm text-gray-400 mb-3">{tour.data.subtitle}</p>
+              <p class="text-sm text-gray-300 mb-4 line-clamp-2">
+                {tour.data.description}
+              </p>
+
+              <!-- Info -->
+              <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center gap-4">
+                  <span class="text-gray-400">⏱️ {tour.data.duration}</span>
+                </div>
+                <span class="text-[#00a8e1] font-bold text-lg">{tour.data.price}</span>
+              </div>
+
+              <!-- Date -->
+              <div class="mt-3 pt-3 border-t border-white/10">
+                <span class="text-xs text-gray-500">
+                  {tour.data.date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  })}
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

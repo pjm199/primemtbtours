@@ -1,0 +1,182 @@
+{
+  "categories": [
+    {
+      "id": "scenic",
+      "title": "Scenic Tours (Beginner-Friendly)",
+      "tours": [
+        {
+          "id": 1,
+          "title": "Cinque Terre Coastal Ride",
+          "subtitle": "Easy • Panoramic Views",
+          "description": "Gentle coastal paths with breathtaking Mediterranean views. Perfect for beginners and families.",
+          "imageUrl": "/media/mtbtours-landscape.png",
+          "duration": "4 hours",
+          "difficulty": "Beginner",
+          "price": "€65",
+          "highlights": ["Sea views", "Photo stops", "E-bike option"]
+        },
+        {
+          "id": 2,
+          "title": "Portofino Panorama",
+          "subtitle": "Easy • Village Tour",
+          "description": "Explore charming coastal villages and scenic viewpoints at a relaxed pace.",
+          "imageUrl": "/media/sestri1.jpeg",
+          "duration": "3.5 hours",
+          "difficulty": "Beginner",
+          "price": "€60",
+          "highlights": ["Village stops", "Local guide", "Lunch included"]
+        },
+        {
+          "id": 3,
+          "title": "Sunset Golden Hour",
+          "subtitle": "Easy • Romantic",
+          "description": "Evening ride along the coast during the magical golden hour.",
+          "imageUrl": "/media/mtb-coast-1.jpeg",
+          "duration": "2.5 hours",
+          "difficulty": "Beginner",
+          "price": "€50",
+          "highlights": ["Sunset views", "Photography", "Wine tasting"]
+        },
+        {
+          "id": 4,
+          "title": "Levanto Easy Trail",
+          "subtitle": "Easy • Family-Friendly",
+          "description": "Gentle trails through olive groves and coastal paths, perfect for families.",
+          "imageUrl": "/media/mtb-forest-1.jpeg",
+          "duration": "3 hours",
+          "difficulty": "Beginner",
+          "price": "€55",
+          "highlights": ["Kid-friendly", "Nature", "Picnic stop"]
+        }
+      ]
+    },
+    {
+      "id": "enduro",
+      "title": "Enduro & Technical Tours (Advanced)",
+      "tours": [
+        {
+          "id": 5,
+          "title": "Alta Via Enduro",
+          "subtitle": "Hard • Technical Descents",
+          "description": "Challenging singletracks and technical descents for experienced riders.",
+          "imageUrl": "/media/mtb-forest-1.jpeg",
+          "duration": "6 hours",
+          "difficulty": "Advanced",
+          "price": "€95",
+          "highlights": ["Technical", "Alpine trails", "Uplift service"]
+        },
+        {
+          "id": 6,
+          "title": "Sestri Levante Downhill",
+          "subtitle": "Hard • Expert Only",
+          "description": "Steep descents and rocky terrain through the Ligurian backcountry.",
+          "imageUrl": "/media/sestri1.jpeg",
+          "duration": "5 hours",
+          "difficulty": "Advanced",
+          "price": "€90",
+          "highlights": ["Steep drops", "Rock gardens", "Expert guide"]
+        },
+        {
+          "id": 7,
+          "title": "Monte Fasce Challenge",
+          "subtitle": "Hard • All-Mountain",
+          "description": "Full-day enduro adventure with challenging climbs and thrilling descents.",
+          "imageUrl": "/media/mtb-forest-1.jpeg",
+          "duration": "7 hours",
+          "difficulty": "Advanced",
+          "price": "€110",
+          "highlights": ["All-day", "1500m climb", "Lunch included"]
+        },
+        {
+          "id": 8,
+          "title": "Night Ride Adventure",
+          "subtitle": "Moderate • Unique Experience",
+          "description": "Experience the trails under the stars with specialized lighting equipment.",
+          "imageUrl": "/media/mtb-coast-1.jpeg",
+          "duration": "3 hours",
+          "difficulty": "Intermediate",
+          "price": "€75",
+          "highlights": ["Night riding", "Headlamps", "Moonlit trails"]
+        }
+      ]
+    },
+    {
+      "id": "emtb",
+      "title": "E-MTB Electric Tours",
+      "tours": [
+        {
+          "id": 9,
+          "title": "E-MTB Cinque Terre Explorer",
+          "subtitle": "Moderate • Electric Assist",
+          "description": "Cover more ground with electric bikes, perfect for longer tours without the fatigue.",
+          "imageUrl": "/media/mtb-coast-1.jpeg",
+          "duration": "5 hours",
+          "difficulty": "Intermediate",
+          "price": "€80",
+          "highlights": ["E-bike included", "More distance", "Less effort"]
+        },
+        {
+          "id": 10,
+          "title": "E-MTB Mountain Loop",
+          "subtitle": "Moderate • Scenic",
+          "description": "Mountain trails made accessible with electric assist technology.",
+          "imageUrl": "/media/mtb-forest-1.jpeg",
+          "duration": "4.5 hours",
+          "difficulty": "Intermediate",
+          "price": "€75",
+          "highlights": ["E-bike", "Mountain views", "Coffee stop"]
+        },
+        {
+          "id": 11,
+          "title": "E-MTB Coastal Grand Tour",
+          "subtitle": "Easy-Moderate • Full Day",
+          "description": "Comprehensive coastal tour covering multiple villages and viewpoints.",
+          "imageUrl": "/media/sestri1.jpeg",
+          "duration": "8 hours",
+          "difficulty": "Beginner",
+          "price": "€120",
+          "highlights": ["Full day", "Multiple stops", "Lunch & snacks"]
+        }
+      ]
+    },
+    {
+      "id": "custom",
+      "title": "Custom & Private Tours",
+      "tours": [
+        {
+          "id": 12,
+          "title": "Private Guided Tour",
+          "subtitle": "Any Level • Personalized",
+          "description": "Completely customized tour tailored to your group's skill level and interests.",
+          "imageUrl": "/media/mtb-coast-1.jpeg",
+          "duration": "Flexible",
+          "difficulty": "Beginner",
+          "price": "From €150",
+          "highlights": ["Private guide", "Custom route", "Your pace"]
+        },
+        {
+          "id": 13,
+          "title": "Photography Tour",
+          "subtitle": "Easy-Moderate • Photo Focus",
+          "description": "Tour designed for photography enthusiasts with extra stops at scenic locations.",
+          "imageUrl": "/media/sestri1.jpeg",
+          "duration": "5 hours",
+          "difficulty": "Intermediate",
+          "price": "€85",
+          "highlights": ["Photo spots", "Golden hour", "Pro tips"]
+        },
+        {
+          "id": 14,
+          "title": "Multi-Day Adventure",
+          "subtitle": "Moderate • 3-Day Package",
+          "description": "Three-day guided tour covering the best trails of Liguria with accommodation.",
+          "imageUrl": "/media/mtb-forest-1.jpeg",
+          "duration": "3 days",
+          "difficulty": "Intermediate",
+          "price": "€450",
+          "highlights": ["Accommodation", "All meals", "Equipment"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Liguria MTB Regions – Trailforks Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color-scheme: dark light;
+    }
+
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      background: #050816;
+      color: #e5e7eb;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p.lead {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    .card {
+      border-radius: 1rem;
+      padding: 1rem 1.25rem 1.5rem;
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      margin-bottom: 1.5rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 180px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+    }
+
+    select {
+      padding: 0.35rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 0.9rem;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+    }
+
+    .map-wrapper {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: #020617;
+      position: relative;
+      min-height: 320px;
+      margin-bottom: 0.75rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 520px;
+      border: 0;
+      display: block;
+    }
+
+    .footer-note {
+      margin-top: 0.25rem;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+    }
+
+    .footer-note strong {
+      color: #e5e7eb;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Trail cards section */
+    .trails-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    .trails-header h2 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .trails-header span {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .trail-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.75rem;
+    }
+
+    .trail-card {
+      border-radius: 0.9rem;
+      padding: 0.75rem 0.85rem 0.9rem;
+      background: radial-gradient(circle at top left, #0f172a, #020617);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .trail-card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4rem;
+      align-items: flex-start;
+    }
+
+    .trail-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .trail-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.18rem 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      white-space: nowrap;
+    }
+
+    .trail-meta {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .trail-desc {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+    }
+
+    .trail-link {
+      margin-top: 0.25rem;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .trail-link svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      .card {
+        padding: 0.9rem;
+      }
+      iframe {
+        height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Liguria MTB Regions – Trailforks Playground</h1>
+    <p class="lead">
+      Switch region and style to see the <strong>Trailforks Region Map</strong>
+      and a selection of the most iconic trails. This is a prototype for future pages
+      on <strong>primemtbtours.com</strong> and your other sites.
+    </p>
+
+    <div class="card">
+      <div class="controls">
+        <div class="control-group">
+          <label for="region-select">Riding Area</label>
+          <select id="region-select"></select>
+        </div>
+
+        <div class="control-group">
+          <label for="trailstyle-select">Trail Style</label>
+          <select id="trailstyle-select">
+            <option value="difficulty">Difficulty (colors)</option>
+            <option value="status">Status</option>
+            <option value="condition">Condition</option>
+            <option value="color">Plain color</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="maptype-select">Basemap</label>
+          <select id="maptype-select">
+            <option value="trailforks">Trailforks Topo</option>
+            <option value="trailforks-streets">Trailforks Streets</option>
+            <option value="trailforks-dark">Trailforks Dark</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="map-wrapper">
+        <iframe
+          id="tf-map"
+          title="Trailforks Region Map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="footer-note" id="region-meta">
+        <span id="region-description"></span>
+        <span>
+          Data by <a href="https://www.trailforks.com/" target="_blank" rel="noreferrer">Trailforks</a>.
+        </span>
+      </div>
+
+      <div class="trails-header">
+        <h2>Featured trails in <span id="region-name-inline">Finale Ligure</span></h2>
+        <span>3–5 key lines that riders recognize and search for.</span>
+      </div>
+
+      <div class="trail-cards" id="trail-cards"></div>
+    </div>
+  </div>
+
+  <script>
+    // --- CONFIG: regions & featured trails ---
+    const REGIONS = [
+      {
+        id: 4900,
+        label: "Finale Ligure",
+        url: "https://www.trailforks.com/region/finale-ligure/",
+        note: "Classic Ligurian enduro hub overlooking the sea.",
+        defaultZoom: 12,
+        featuredTrails: [
+          {
+            name: "Roller Coaster",
+            tag: "Flow / Intermediate",
+            meta: "Finale Ligure MTB trail",
+            url: "https://www.trailforks.com/trails/roller-coaster-65737/",
+            desc: "Fast, playful descent with perfect berms and views of the Ligurian Sea. Great for confident intermediates and e-enduro days."
+          },
+          {
+            name: "Madre Natura",
+            tag: "Enduro / Advanced",
+            meta: "Rocky singletrack",
+            url: "https://www.trailforks.com/trails/madre-natura/",
+            desc: "Natural rock, technical corners and typical Finale limestone. A must-ride for experienced riders who like rough terrain."
+          },
+          {
+            name: "Ingegnere",
+            tag: "Tech / Advanced",
+            meta: "Steep & technical",
+            url: "https://www.trailforks.com/trails/ingegnere/",
+            desc: "Steep, rocky sections with tight turns through the forest. Ideal as a challenge line in a guided enduro day."
+          },
+          {
+            name: "Crestino / Cravarezza",
+            tag: "Black option",
+            meta: "Expert add-on",
+            url: "https://www.trailforks.com/trails/crestino/",
+            desc: "A more demanding option with technical rock sections. Perfect add-on for small expert groups."
+          }
+        ]
+      },
+      {
+        id: 14255,
+        label: "Varazze – Beigua",
+        url: "https://www.trailforks.com/region/varazze/",
+        note: "From sea level to Monte Beigua ridge, big-mountain feeling above the coast.",
+        defaultZoom: 11,
+        featuredTrails: [
+          {
+            name: "626",
+            tag: "Enduro classic",
+            meta: "Fast & varied",
+            url: "https://www.trailforks.com/trails/626/",
+            desc: "Signature Varazze line with a mix of flow, natural rock and forest sections. Great as a highlight of the day."
+          },
+          {
+            name: "Goats",
+            tag: "Technical",
+            meta: "Narrow singletrack",
+            url: "https://www.trailforks.com/trails/goats-100334/",
+            desc: "Tighter, more technical singletrack with switchbacks. Ideal for experienced riders who enjoy precise bike handling."
+          },
+          {
+            name: "Alta Via dei Monti Liguri – Beigua",
+            tag: "Panoramic route",
+            meta: "Ridge adventure",
+            url: "https://www.trailforks.com/route/alta-via-dei-monti-liguri-varazze/",
+            desc: "Ridge line sections of the Alta Via with huge sea views. Perfect for big panoramic e-MTB or all-mountain days."
+          }
+        ]
+      },
+      {
+        id: 11940,
+        label: "Genova & Nervi Hills",
+        url: "https://www.trailforks.com/region/genova-1656/",
+        note: "Forti di Genova, city skyline and Nervi coastline in one riding area.",
+        defaultZoom: 12,
+        featuredTrails: [
+          {
+            name: "Mimosa",
+            tag: "Flow / Intermediate",
+            meta: "Genova / Sestri area",
+            url: "https://www.trailforks.com/trails/mimosa-66518/",
+            desc: "Fast and fun with a good rhythm, very popular with local riders. Great as an intro to the area."
+          },
+          {
+            name: "Bellavista",
+            tag: "Viewpoint trail",
+            meta: "Sea views",
+            url: "https://www.trailforks.com/trails/bellavista-trail/",
+            desc: "Mix of technical and flowing sections with open views over the city and the sea."
+          },
+          {
+            name: "S. Croce – Pieve Ligure Alta",
+            tag: "Panoramic",
+            meta: "Balcony trail",
+            url: "https://www.trailforks.com/trails/s-croce-pieve-ligure-alta/",
+            desc: "Balcony-style singletrack above the coast, perfect for e-MTB tours combining riding and landscape."
+          }
+        ]
+      },
+      {
+        id: 12424,
+        label: "Sestri Levante",
+        url: "https://www.trailforks.com/region/sestri-levante/",
+        note: "Iconic enduro trails dropping straight to the sea.",
+        defaultZoom: 12,
+        featuredTrails: [
+          {
+            name: "Mimosa",
+            tag: "Enduro classic",
+            meta: "Sea-view descent",
+            url: "https://www.trailforks.com/trails/mimosa-66518/",
+            desc: "One of the most famous Ligurian descents: fast, varied and panoramic, often used in enduro races."
+          },
+          {
+            name: "Ca Gianca",
+            tag: "Technical",
+            meta: "Rock sections",
+            url: "https://www.trailforks.com/trails/ca-gianca/",
+            desc: "Steeper and more technical line with rock steps and tight turns. Great for advanced riders."
+          },
+          {
+            name: "Motocarriole",
+            tag: "Forest singletrack",
+            meta: "Natural trail",
+            url: "https://www.trailforks.com/trails/motocarriole/",
+            desc: "Natural forest trail, less exposed but still engaging. Works well as part of a mixed-level tour."
+          }
+        ]
+      },
+      {
+        id: 26205,
+        label: "Cinque Terre",
+        url: "https://www.trailforks.com/region/cinque-terre-26205/",
+        note: "Ridge lines and sanctuaries above the famous villages.",
+        defaultZoom: 11,
+        featuredTrails: [
+          {
+            name: "Alta Via delle 5 Terre (AV5T)",
+            tag: "Panoramic route",
+            meta: "Ridge traverse",
+            url: "https://www.trailforks.com/route/alta-via-delle-5-terre-av5t/",
+            desc: "High ridge route linking the Cinque Terre from above, with constant sea views and classic Ligurian terrain."
+          },
+          {
+            name: "Trail 501 – Sella La Croce – Strada dei Santuari",
+            tag: "Scenic",
+            meta: "Pilgrim route",
+            url: "https://www.trailforks.com/trails/501-sella-la-croce-strada-dei-santuari/",
+            desc: "Historic path between sanctuaries with a mix of old stone paths and singletrack, ideal for all-mountain e-MTB tours."
+          },
+          {
+            name: "Trail 502",
+            tag: "Linking trail",
+            meta: "Singletrack",
+            url: "https://www.trailforks.com/trails/502/",
+            desc: "Useful connector within the Cinque Terre network, combining forest sections and open viewpoints."
+          }
+        ]
+      }
+    ];
+
+    const $regionSelect = document.getElementById("region-select");
+    const $trailstyle = document.getElementById("trailstyle-select");
+    const $maptype = document.getElementById("maptype-select");
+    const $iframe = document.getElementById("tf-map");
+    const $regionDesc = document.getElementById("region-description");
+    const $regionNameInline = document.getElementById("region-name-inline");
+    const $trailCards = document.getElementById("trail-cards");
+
+    // Populate region dropdown from config
+    REGIONS.forEach((r, idx) => {
+      const opt = document.createElement("option");
+      opt.value = String(r.id);
+      opt.textContent = r.label;
+      if (idx === 0) opt.selected = true; // default: Finale
+      $regionSelect.appendChild(opt);
+    });
+
+    function buildRegionMapSrc({ rid, maptype, trailstyle, zoom }) {
+      const params = new URLSearchParams({
+        rid: String(rid),
+        activitytype: "1",       // MTB
+        w: "100%",
+        h: "500px",
+        maptype,
+        trailstyle,
+        controls: "1",
+        list: "0",               // no trail list sidebar in iframe
+        basicmap: "0",
+        layers: "trail,labels,poi",
+        hideunsanctioned: "1",   // only official trails
+        z: String(zoom),
+        lat: "",
+        lon: ""
+      });
+
+      return "https://www.trailforks.com/widgets/region_map/?" + params.toString();
+    }
+
+    function renderTrailCards(region) {
+      $trailCards.innerHTML = "";
+
+      region.featuredTrails.forEach(trail => {
+        const card = document.createElement("article");
+        card.className = "trail-card";
+
+        card.innerHTML = `
+          <div class="trail-card-header">
+            <div class="trail-title">${trail.name}</div>
+            <div class="trail-tag">${trail.tag}</div>
+          </div>
+          <div class="trail-meta">${trail.meta}</div>
+          <div class="trail-desc">${trail.desc}</div>
+          ${trail.url ? `
+            <a class="trail-link" href="${trail.url}" target="_blank" rel="noreferrer">
+              View on Trailforks
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path fill="currentColor"
+                  d="M9.5 2H14v4.5a.5.5 0 0 1-1 0V3.707L7.854 8.854a.5.5 0 1 1-.708-.708L12.293 3H9.5a.5.5 0 0 1 0-1z"/>
+                <path fill="currentColor"
+                  d="M3.5 3A1.5 1.5 0 0 0 2 4.5v8A1.5 1.5 0 0 0 3.5 14h8a1.5 1.5 0 0 0 1.5-1.5V9a.5.5 0 0 0-1 0v3.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5H8a.5.5 0 0 0 0-1H3.5z"/>
+              </svg>
+            </a>
+          ` : "" }
+        `;
+
+        $trailCards.appendChild(card);
+      });
+    }
+
+    function updateMap() {
+      const rid = Number($regionSelect.value);
+      const region = REGIONS.find(r => r.id === rid);
+      const maptype = $maptype.value;
+      const trailstyle = $trailstyle.value;
+      const zoom = region?.defaultZoom ?? 12;
+
+      const src = buildRegionMapSrc({ rid, maptype, trailstyle, zoom });
+      $iframe.src = src;
+
+      if (region) {
+        $regionDesc.innerHTML =
+          `<strong>${region.label}</strong> – ${region.note} &nbsp;` +
+          `<a href="${region.url}" target="_blank" rel="noreferrer">Trailforks region »</a>`;
+        $regionNameInline.textContent = region.label;
+        renderTrailCards(region);
+      }
+    }
+
+    $regionSelect.addEventListener("change", updateMap);
+    $trailstyle.addEventListener("change", updateMap);
+    $maptype.addEventListener("change", updateMap);
+
+    // Initial load
+    updateMap();
+  </script>
+</body>
+</html>

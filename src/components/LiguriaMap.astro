@@ -1,0 +1,193 @@
+---
+// Interactive Liguria map with clickable regions
+---
+
+<section class="w-full bg-[#0f172a] py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center">Liguria MTB Regions</h2>
+    <p class="text-gray-400 mb-8 text-center max-w-2xl mx-auto">
+      Click on any region to explore trails and plan your adventure
+    </p>
+
+    <div class="relative w-full max-w-4xl mx-auto">
+      <!-- SVG Map with 3 main clickable regions -->
+      <svg
+        id="liguria-svg-map"
+        viewBox="0 0 1000 618"
+        class="w-full h-auto"
+        style="filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));"
+      >
+        <!-- Background Image -->
+        <image
+          href="/media/liguria-3-aree.JPG"
+          width="1000"
+          height="618"
+          preserveAspectRatio="xMidYMid slice"
+        />
+
+        <!-- Invisible clickable regions (no visual overlay, just click areas) -->
+
+        <!-- Region 1: Genoa (yellow-green label box on the left) -->
+        <g class="region-hover" data-region="genoa">
+          <rect
+            x="430"
+            y="200"
+            width="180"
+            height="70"
+            fill="rgba(199, 194, 32, 0.3)"
+            stroke="#3b82f6"
+            stroke-width="2"
+            class="region-box"
+            style="cursor: pointer;"
+          />
+        </g>
+
+        <!-- Region 2: Sestri Levante (yellow-green label box in the center) -->
+        <g class="region-hover" data-region="sestri-levante">
+          <rect
+            x="550"
+            y="280"
+            width="290"
+            height="60"
+            fill="transparent"
+            stroke="none"
+            class="region-box"
+            style="cursor: pointer;"
+          />
+        </g>
+
+        <!-- Region 3: Cinque Terre (yellow-green label box on the right) -->
+        <g class="region-hover" data-region="cinque-terre">
+          <rect
+            x="640"
+            y="360"
+            width="250"
+            height="60"
+            fill="transparent"
+            stroke="none"
+            class="region-box"
+            style="cursor: pointer;"
+          />
+        </g>
+      </svg>
+
+      <!-- Region Info Panel -->
+      <div
+        id="region-info"
+        class="mt-6 p-6 rounded-xl bg-slate-900/60 backdrop-blur-sm border border-blue-500/20 transition-all duration-300"
+        style="opacity: 0; transform: translateY(10px);"
+      >
+        <h3 id="region-name" class="text-2xl font-bold text-white mb-2"></h3>
+        <p id="region-description" class="text-gray-300 mb-4"></p>
+        <button
+          id="explore-button"
+          class="px-6 py-3 rounded-lg bg-linear-to-r from-[#00a8e1] to-[#00d4ff] text-white font-semibold hover:shadow-lg hover:shadow-[#00a8e1]/30 transition-all duration-300"
+        >
+          Explore Trails
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .region-hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .region-hover:hover .region-box {
+    fill: rgba(249, 115, 22, 0.4);
+    stroke: #f97316;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6));
+  }
+
+  .region-hover:active .region-box {
+    fill: rgba(249, 115, 22, 0.5);
+  }
+</style>
+
+<script>
+  // Region data with sub-areas
+  const regionData = {
+    'genoa': {
+      name: 'Genoa Region',
+      description: 'The largest MTB area in Liguria with 5 distinct zones: Varazze (legendary 626 trail), Turchino (historic mountain pass), Righi (city trails), Antola (wild enduro), and Nervi (coastal descents).',
+      subAreas: ['Varazze', 'Turchino', 'Righi', 'Antola', 'Nervi'],
+      scrollTo: 2 // Maps to Genova Righi in TrailforksMap (index 2)
+    },
+    'sestri-levante': {
+      name: 'Sestri Levante',
+      description: 'Iconic enduro trails dropping to the sea across 3 zones: Sant\'Anna (technical rock gardens), Riva Trigoso (the famous Mimosa descent), and Rai (flowing singletrack with sea views).',
+      subAreas: ['Sant\'Anna', 'Riva Trigoso', 'Rai'],
+      scrollTo: 0 // Maps to Sestri Levante in TrailforksMap (index 0)
+    },
+    'cinque-terre': {
+      name: 'Cinque Terre',
+      description: 'Panoramic ridge lines above the famous villages with 3 main areas: Levanto (coastal trails), Monterosso (sanctuary routes), and Alta Via (high ridge with constant sea views).',
+      subAreas: ['Levanto', 'Monterosso', 'Alta Via'],
+      scrollTo: 1 // Maps to Cinque Terre in TrailforksMap (index 1)
+    }
+  };
+
+  const regions = document.querySelectorAll('.region-hover');
+  const infoPanel = document.getElementById('region-info');
+  const regionName = document.getElementById('region-name');
+  const regionDescription = document.getElementById('region-description');
+  const exploreButton = document.getElementById('explore-button');
+
+  let selectedRegion: string | null = null;
+
+  // Show default region (Sestri Levante) on load
+  window.addEventListener('DOMContentLoaded', () => {
+    selectedRegion = 'sestri-levante';
+    const data = regionData[selectedRegion as keyof typeof regionData];
+    if (regionName && regionDescription && infoPanel) {
+      regionName.textContent = data.name;
+      regionDescription.textContent = data.description;
+      infoPanel.style.opacity = '1';
+      infoPanel.style.transform = 'translateY(0)';
+    }
+  });
+
+  regions.forEach(region => {
+    region.addEventListener('click', () => {
+      const regionId = region.getAttribute('data-region');
+      if (!regionId) return;
+
+      selectedRegion = regionId;
+      const data = regionData[regionId as keyof typeof regionData];
+
+      // Update info panel
+      if (regionName && regionDescription && infoPanel) {
+        regionName.textContent = data.name;
+        regionDescription.textContent = data.description;
+        infoPanel.style.opacity = '1';
+        infoPanel.style.transform = 'translateY(0)';
+      }
+    });
+  });
+
+  // Explore button click - scroll to TrailforksMap and select region
+  exploreButton?.addEventListener('click', () => {
+    if (!selectedRegion) return;
+
+    const data = regionData[selectedRegion as keyof typeof regionData];
+
+    // Scroll to TrailforksMap section
+    const trailforksSection = document.querySelector('section:has(#region-buttons)');
+    if (trailforksSection) {
+      trailforksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Wait for scroll, then click the appropriate region button
+      setTimeout(() => {
+        const buttons = document.querySelectorAll('#region-buttons button');
+        const button = buttons[data.scrollTo] as HTMLButtonElement;
+        if (button) {
+          button.click();
+        }
+      }, 800);
+    }
+  });
+</script>

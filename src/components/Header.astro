@@ -1,44 +1,46 @@
 ---
-import { SITE_TITLE, SITE_TAGLINE } from "../config";
+import { SITE_TITLE } from "../config";
 ---
 
-<header class="sticky top-0 z-30 bg-gradient-to-b from-slate-950/95 via-slate-950/85 to-transparent backdrop-blur border-b border-slate-800/40">
-  <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 lg:h-16 lg:px-6">
-    <!-- Left: logo + primary nav -->
-    <div class="flex items-center gap-6">
-      <a href="/" class="flex items-center gap-3 transition-transform hover:scale-105">
-        <img
-          src="/logo-primemtbtours.png"
-          alt={SITE_TITLE}
-          class="h-12 w-12 rounded-full object-cover ring-2 ring-sky-500/50 shadow-lg shadow-sky-500/20"
-        />
-        <div class="flex flex-col">
-          <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-sky-400 to-emerald-400 bg-clip-text text-transparent">
-            Prime MTB Tours
-          </span>
-          <span class="text-xs text-slate-400 tracking-wide">
-            {SITE_TAGLINE}
-          </span>
-        </div>
+<header class="fixed top-0 left-0 right-0 z-50 bg-linear-to-b from-black/80 via-black/40 to-transparent backdrop-blur-sm transition-all duration-300">
+  <div class="mx-auto flex h-20 items-center justify-between px-8 lg:px-12">
+    <!-- Left: Prime branding + navigation -->
+    <div class="flex items-center gap-10">
+      <a href="/" class="hover:opacity-90 transition-opacity">
+        <span class="text-2xl font-bold leading-tight">
+          <span class="text-white">prime</span>
+          <span class="text-transparent bg-clip-text bg-linear-to-r from-[#00a8e1] to-[#00d4ff]"> mtb</span>
+          <span class="text-transparent bg-clip-text bg-linear-to-r from-[#facc15] to-[#f97316]"> tours</span>
+        </span>
       </a>
-      <nav class="hidden items-center gap-4 text-sm text-slate-200/80 sm:flex">
-        <a href="#tours" class="relative py-1 transition-colors hover:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-sky-400 after:to-emerald-400 after:transition-all after:duration-300 hover:after:w-full">Tours</a>
-        <a href="#area" class="relative py-1 transition-colors hover:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-sky-400 after:to-emerald-400 after:transition-all after:duration-300 hover:after:w-full">Where we ride</a>
-        <a href="#levels" class="relative py-1 transition-colors hover:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-sky-400 after:to-emerald-400 after:transition-all after:duration-300 hover:after:w-full">Levels &amp; bikes</a>
-        <a href="#contact" class="relative py-1 transition-colors hover:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-sky-400 after:to-emerald-400 after:transition-all after:duration-300 hover:after:w-full">Contact</a>
+      <nav class="hidden items-center gap-3 text-sm font-semibold text-white/80 md:flex">
+        <a href="#home" class="relative px-4 py-2 hover:text-white transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#00a8e1] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200">Home</a>
+        <a href="#tours" class="relative px-4 py-2 hover:text-white transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#00a8e1] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200">Tours</a>
+        <a href="#videos" class="relative px-4 py-2 hover:text-white transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#00a8e1] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200">Videos</a>
+        <a href="#contact" class="relative px-4 py-2 hover:text-white transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#00a8e1] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200">Contact</a>
       </nav>
     </div>
 
-    <!-- Right: search, language, profile -->
-    <div class="flex items-center gap-4 text-sm text-slate-200/80">
-      <div class="hidden items-center gap-2 rounded-full border border-slate-600/70 bg-slate-900/70 px-3 py-1 text-xs sm:flex">
-        <span class="opacity-70">Search</span>
-        <span class="text-lg leading-none">⌕</span>
-      </div>
-      <button class="hidden text-xs font-medium opacity-80 hover:opacity-100 sm:inline">
-        EN
+    <!-- Right: utility navigation + Book Now -->
+    <div class="flex items-center gap-4 text-white/90">
+      <!-- Book Now Button - Primary CTA -->
+      <a
+        href="#contact"
+        class="hidden sm:flex items-center gap-2 px-5 py-2 bg-linear-to-r from-[#00a8e1] to-[#00d4ff] text-white font-bold rounded-md hover:from-[#00d4ff] hover:to-[#00a8e1] transition-all duration-200 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Book Now
+      </a>
+
+      <button class="hidden md:block hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
       </button>
-      <button class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-700/80 text-xs font-semibold">
+      <button class="hover:text-white transition-colors text-sm">EN</button>
+      <button class="flex h-9 w-9 items-center justify-center rounded-sm bg-white/10 hover:bg-white/20 transition-colors text-sm font-semibold">
         P
       </button>
     </div>
